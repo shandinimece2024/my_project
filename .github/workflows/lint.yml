@@ -1,0 +1,22 @@
+name: ShellCheck Lint
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install ShellCheck
+        run: |
+          sudo apt update
+          sudo apt install -y shellcheck
+
+      - name: Run ShellCheck
+        run: |
+          shellcheck *.sh
